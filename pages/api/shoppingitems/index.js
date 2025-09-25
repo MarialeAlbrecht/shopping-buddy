@@ -1,13 +1,13 @@
 import dbConnect from "@/db/connect";
-import Item from "@/db/models/shoppingitems";
+import shoppingItem from "@/db/models/shoppingitem";
 
 export default async function handler(request, response) {
   await dbConnect();
 
   try {
     if (request.method === "GET") {
-      const items = await Item.find();
-      response.status(200).json(items);
+      const shoppingList = await shoppingItem.find();
+      response.status(200).json(shoppingList);
       return;
     }
   } catch (error) {
