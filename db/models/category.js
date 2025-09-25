@@ -5,7 +5,7 @@ const categoriesSchema = new Schema(
   {
     category: { type: String, required: true },
   },
-  { collection: "Category" }
+  { collection: "category" }
 );
 
 const Category =
