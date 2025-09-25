@@ -1,5 +1,5 @@
 import dbConnect from "@/db/connect";
-import shoppingItem from "@/db/models/shoppingitem";
+import shoppingItem from "@/db/models/shoppingItem";
 
 export default async function handler(request, response) {
   await dbConnect();
