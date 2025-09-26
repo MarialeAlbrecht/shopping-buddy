@@ -1,17 +1,14 @@
 import useSWR from "swr";
 import ProductCard from "./ProductCard";
 
-const fetcher = (url) => fetch(url).then((response) => response.json());
-
 export default function ProductList() {
-  const { data, isLoading } = useSWR("/api/shoppinglist", fetcher);
-  console.log(data);
+  const { data, isLoading } = useSWR("/api/shoppinglist");
   if (isLoading) {
-    return <h1>Loading...</h1>;
+    return <p>Loading...</p>;
   }
 
   if (!data) {
-    return <h1>Oops..we could not find any products</h1>;
+    return <p>Oops..we could not find any products</p>;
   }
 
   return (

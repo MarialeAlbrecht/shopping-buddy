@@ -17,17 +17,15 @@ export default function ProductCard({ name, quantity, category }) {
   const color = categoryColors[category];
 
   return (
-    <>
-      <Card $categoryColor={color}>
-        <p>Name: {name}</p>
-        <p>Quantity: {quantity}</p>
-        <p>Category: {category}</p>
-      </Card>
-    </>
+    <Card $categoryColor={color}>
+      <p>Name: {name}</p>
+      <p>Quantity: {quantity}</p>
+      <p>Category: {category}</p>
+    </Card>
   );
 }
 
-const Card = styled.div`
+const Card = styled.li`
   ${({ $categoryColor }) =>
     $categoryColor &&
     css`
