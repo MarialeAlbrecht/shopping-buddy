@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import useSWR from "swr";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function ProductDetail() {
   const router = useRouter();
@@ -13,6 +14,7 @@ export default function ProductDetail() {
 
   return (
     <main>
+      <Link href={"/"}>Go Back</Link>
       <h1>{product.name}</h1>
       <Image
         src={product.imageUrl}
