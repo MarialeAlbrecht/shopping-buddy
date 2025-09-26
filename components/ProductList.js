@@ -22,6 +22,7 @@ export default function ProductList() {
           {data.map((item) => (
             <ProductCard
               key={item._id}
+              _id={item._id}
               name={item.name}
               quantity={item.quantity}
               category={item.category}
