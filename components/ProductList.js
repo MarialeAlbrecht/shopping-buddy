@@ -1,11 +1,11 @@
 import useSWR from "swr";
 import ProductCard from "./ProductCard";
 
-const fetcher = (url) => fetch.url.then((response) => response.json());
+const fetcher = (url) => fetch(url).then((response) => response.json());
 
 export default function ProductList() {
-  const { data, isLoading } = useSWR("/api/shoppingItem", fetcher);
-
+  const { data, isLoading } = useSWR("/api/shoppinglist", fetcher);
+  console.log(data);
   if (isLoading) {
     return <h1>Loading...</h1>;
   }
@@ -13,4 +13,20 @@ export default function ProductList() {
   if (!data) {
     return <h1>Oops..we could not find any products</h1>;
   }
+
+  return (
+    <>
+      <h1>Here is your shopping list</h1>
+      <ul>
+        {data.map((item) => (
+          <ProductCard
+            key={item._id}
+            name={item.name}
+            quantity={item.quantity}
+            category={item.category}
+          />
+        ))}
+      </ul>
+    </>
+  );
 }
