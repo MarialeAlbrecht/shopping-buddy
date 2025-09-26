@@ -17,6 +17,7 @@ export default function ProductList() {
   return (
     <>
       <h1>Here is your shopping list</h1>
+      <h2>You have {data.length} products in total.</h2>
       <ul>
         {data.map((item) => (
           <ProductCard
