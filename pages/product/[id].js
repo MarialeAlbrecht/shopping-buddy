@@ -8,8 +8,8 @@ export default function ProductDetail() {
   const { id } = router.query;
   const { data: product, error, isLoading } = useSWR(`/api/shoppinglist/${id}`);
 
-  if (!id || isLoading) return <p>Loading product...</p>;
   if (error) return <p>Error loading product</p>;
+  if (!id || isLoading) return <p>Loading product...</p>;
   if (!product) return <p>Product not found</p>;
 
   return (
