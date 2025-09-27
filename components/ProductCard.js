@@ -1,6 +1,8 @@
 import styled, { css } from "styled-components";
+import MoreButton from "./MoreButton";
+import Link from "next/link";
 
-export default function ProductCard({ name, quantity, category }) {
+export default function ProductCard({ name, quantity, category, _id }) {
   const categoryColors = {
     Dairy: "pink",
     Bakery: "wheat",
@@ -17,11 +19,16 @@ export default function ProductCard({ name, quantity, category }) {
   const color = categoryColors[category];
 
   return (
-    <Card $categoryColor={color}>
-      <p>Name: {name}</p>
-      <p>Quantity: {quantity}</p>
-      <p>Category: {category}</p>
-    </Card>
+    <>
+      <Card $categoryColor={color}>
+        <p>Name: {name}</p>
+        <p>Quantity: {quantity}</p>
+        <p>Category: {category}</p>
+        <Link href={`/product/${_id}`}>
+          <MoreButton>More</MoreButton>
+        </Link>
+      </Card>
+    </>
   );
 }
 
