@@ -3,6 +3,7 @@ import MoreButton from "./MoreButton";
 import Link from "next/link";
 import DeleteButton from "./DeleteButton";
 import { useRouter } from "next/router";
+import { mutate } from "swr";
 
 export default function ProductCard({ name, quantity, category, _id }) {
   const router = useRouter();
@@ -11,11 +12,15 @@ export default function ProductCard({ name, quantity, category, _id }) {
       `Are you sure you want to delete "${name}"?`
     );
     if (!confirmed) return;
+
     const response = await fetch(`/api/shoppinglist/${_id}`, {
       method: "DELETE",
     });
     if (response.ok) {
-      router.push("/");
+      mutate("/api/shoppinglist", (currentData) =>
+        currentData.filter((item) => item._id !== _id)
+      );
+    } else {
     }
   }
 
