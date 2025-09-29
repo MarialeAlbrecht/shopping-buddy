@@ -6,7 +6,7 @@ export default async function handler(request, response) {
 
   try {
     if (request.method === "GET") {
-      const shoppingList = await shoppingItem.find();
+      const shoppingList = await shoppingItem.find().sort({ createdAt: -1 });
       response.status(200).json(shoppingList);
       return;
     }

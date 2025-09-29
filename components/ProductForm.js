@@ -10,7 +10,6 @@ export default function ProductForm({ onSubmit }) {
     if (onSubmit) {
       onSubmit(data);
     }
-    console.log("NewProdutc", data);
   }
 
   if (isLoading) {
