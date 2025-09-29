@@ -7,11 +7,15 @@ import { useRouter } from "next/router";
 export default function ProductCard({ name, quantity, category, _id }) {
   const router = useRouter();
   async function handleDelete() {
+    const confirmed = window.confirm(
+      `Are you sure you want to delete "${name}"?`
+    );
+    if (!confirmed) return;
     const response = await fetch(`/api/shoppinglist/${_id}`, {
       method: "DELETE",
     });
     if (response.ok) {
-      return;
+      router.push("/");
     }
   }
 
