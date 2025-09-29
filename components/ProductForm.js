@@ -4,8 +4,9 @@ export default function ProductForm({}) {
   const { data, isLoading, error } = useSWR("/api/categories");
 
   function handleSubmit(event) {
+    event.preventDefault();
     const formData = new FormData(event.target);
-    const data = Object.formEntries(formData);
+    const data = Object.fromEntries(formData);
 
     console.log("NewProdutc", data);
   }

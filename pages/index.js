@@ -1,11 +1,10 @@
-import ProductCard from "@/components/ProductCard";
 import ProductList from "@/components/ProductList";
-import ProductForm from "@/components/ProductForm";
+import AddProductButton from "@/components/AddProductButton";
 
 export default function HomePage() {
   return (
     <div>
-      <ProductForm />
+      <AddProductButton />
       <ProductList />
     </div>
   );

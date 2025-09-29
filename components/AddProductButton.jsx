@@ -1,7 +1,12 @@
+import Link from "next/link";
 import styled from "styled-components";
 
-export default function AddProductButton({ children }) {
-  return <StyledAddButton>{children}</StyledAddButton>;
+export default function AddProductButton() {
+  return (
+    <StyledAddButton>
+      <Link href={`product/addproduct/newproduct/`}> + </Link>
+    </StyledAddButton>
+  );
 }
 
 const StyledAddButton = styled.button`
