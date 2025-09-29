@@ -26,14 +26,18 @@ export default function ProductForm({}) {
       <label htmlFor="quantity">Select the quantity:</label>
       <input type="number" id="quantity" name="quantity" required />
       <label htmlFor="category">Select a category:</label>
-      <select id="category" name="category" required>
-        <option>Categories </option>
+      <select id="category" name="category" required defaultValue="">
+        <option value="" disabled>
+          Categories{" "}
+        </option>
         {data.map((category) => (
           <option key={category._id} value={category.category}>
             {category.category}
           </option>
         ))}
       </select>
+      <label htmlFor="imageUrl">Add Image URL:</label>
+      <input type="url" id="imageUrl" name="imageUrl" />
       <label htmlFor="comment">Add a comment:</label>
       <input type="text" id="comment" name="comment" />
       <button type="submit">Add Product</button>
