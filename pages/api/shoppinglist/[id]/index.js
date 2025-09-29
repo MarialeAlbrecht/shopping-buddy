@@ -14,5 +14,11 @@ export default async function handler(request, response) {
     response.status(200).json(product);
     return;
   }
+  if (request.method === "DELETE") {
+    const result = await shoppingItem.findByIdAndDelete(id);
+    response.status(200).json({ message: "Product deleted" });
+    return;
+  }
+
   response.status(405).json({ status: "Method not allowed" });
 }
