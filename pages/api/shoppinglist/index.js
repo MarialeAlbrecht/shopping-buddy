@@ -10,6 +10,11 @@ export default async function handler(request, response) {
       response.status(200).json(shoppingList);
       return;
     }
+    if (request.method === "POST") {
+      const newProduct = request.body;
+      await shoppingItem.create(newProduct);
+      response.status(200).json({ status: "New product successfully created" });
+    }
   } catch (error) {
     console.log(error);
     response.status(500).json({ message: "Internal server error" });
