@@ -1,8 +1,20 @@
 import styled, { css } from "styled-components";
 import MoreButton from "./MoreButton";
 import Link from "next/link";
+import DeleteButton from "./DeleteButton";
+import { useRouter } from "next/router";
 
 export default function ProductCard({ name, quantity, category, _id }) {
+  const router = useRouter();
+  async function handleDelete() {
+    const response = await fetch(`/api/shoppinglist/${_id}`, {
+      method: "DELETE",
+    });
+    if (response.ok) {
+      return;
+    }
+  }
+
   const categoryColors = {
     Dairy: "pink",
     Bakery: "wheat",
@@ -27,6 +39,7 @@ export default function ProductCard({ name, quantity, category, _id }) {
         <Link href={`/product/${_id}`}>
           <MoreButton>More</MoreButton>
         </Link>
+        <DeleteButton onClick={handleDelete}>❌</DeleteButton>
       </Card>
     </>
   );
