@@ -13,7 +13,7 @@ export default async function handler(request, response) {
     if (request.method === "POST") {
       const newProduct = request.body;
       await shoppingItem.create(newProduct);
-      response.status(200).json({ status: "New product successfully created" });
+      response.status(201).json({ status: "New product successfully created" });
     }
   } catch (error) {
     console.log(error);

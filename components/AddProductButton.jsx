@@ -4,7 +4,7 @@ import styled from "styled-components";
 export default function AddProductButton() {
   return (
     <StyledAddButton>
-      <Link href={`product/addproduct/newproduct/`}> + </Link>
+      <Link href={`/createproduct`}> + </Link>
     </StyledAddButton>
   );
 }

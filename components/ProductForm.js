@@ -1,13 +1,15 @@
 import useSWR from "swr";
 
-export default function ProductForm({}) {
+export default function ProductForm({ onSubmit }) {
   const { data, isLoading, error } = useSWR("/api/categories");
 
   function handleSubmit(event) {
     event.preventDefault();
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
-
+    if (onSubmit) {
+      onSubmit(data);
+    }
     console.log("NewProdutc", data);
   }
 
