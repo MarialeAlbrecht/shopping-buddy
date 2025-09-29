@@ -6,9 +6,14 @@ export default async function handler(request, response) {
 
   try {
     if (request.method === "GET") {
-      const shoppingList = await shoppingItem.find();
+      const shoppingList = await shoppingItem.find().sort({ createdAt: -1 });
       response.status(200).json(shoppingList);
       return;
+    }
+    if (request.method === "POST") {
+      const newProduct = request.body;
+      await shoppingItem.create(newProduct);
+      response.status(201).json({ status: "New product successfully created" });
     }
   } catch (error) {
     console.log(error);
