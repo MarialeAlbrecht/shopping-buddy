@@ -12,11 +12,14 @@ export default function AddProductButton() {
 const StyledAddButton = styled.button`
   background-color: #1cd0b8ff;
   position: fixed;
-  left: 20px;
+  font-size: medium;
+  right: 20px;
   bottom: 40px;
+  width: 70px;
+  height: 70px;
   appearance: none;
   border: none;
-  background: #ff7dcb;
   padding: 10px;
-  border-radius: 10px;
+  border-radius: 50%;
+  outline: none;
 `;
