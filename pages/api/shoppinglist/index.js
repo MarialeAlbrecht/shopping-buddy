@@ -1,5 +1,6 @@
 import dbConnect from "@/db/connect";
 import shoppingItem from "@/db/models/shoppingItem";
+import { mutate } from "swr";
 
 export default async function handler(request, response) {
   await dbConnect();

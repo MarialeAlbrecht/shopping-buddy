@@ -1,8 +1,27 @@
 import styled, { css } from "styled-components";
 import MoreButton from "./MoreButton";
 import Link from "next/link";
+import DeleteButton from "./DeleteButton";
+import { useRouter } from "next/router";
+import { mutate } from "swr";
 
 export default function ProductCard({ name, quantity, category, _id }) {
+  const router = useRouter();
+  async function handleDelete() {
+    const confirmed = window.confirm(
+      `Are you sure you want to delete "${name}"?`
+    );
+    if (!confirmed) return;
+
+    const response = await fetch(`/api/shoppinglist/${_id}`, {
+      method: "DELETE",
+    });
+    if (response.ok) {
+      mutate("/api/shoppinglist");
+    } else {
+    }
+  }
+
   const categoryColors = {
     Dairy: "pink",
     Bakery: "wheat",
@@ -24,9 +43,8 @@ export default function ProductCard({ name, quantity, category, _id }) {
         <p>Name: {name}</p>
         <p>Quantity: {quantity}</p>
         <p>Category: {category}</p>
-        <Link href={`/product/${_id}`}>
-          <MoreButton>More</MoreButton>
-        </Link>
+        <MoreButton _id={_id} />
+        <DeleteButton onClick={handleDelete}>❌</DeleteButton>
       </Card>
     </>
   );
