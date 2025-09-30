@@ -9,8 +9,7 @@ const shoppingItemSchema = new Schema(
     category: { type: String, required: true },
     comment: { type: String },
   },
-  { collection: "shoppingItem" },
-  { timestamps: true }
+  { collection: "shoppingItem", timestamps: true }
 );
 
 const shoppingItem =

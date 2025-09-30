@@ -1,5 +1,6 @@
 import dbConnect from "@/db/connect";
 import shoppingItem from "@/db/models/shoppingItem";
+import { mutate } from "swr";
 
 export default async function handler(request, response) {
   await dbConnect();
@@ -14,6 +15,7 @@ export default async function handler(request, response) {
       const newProduct = request.body;
       await shoppingItem.create(newProduct);
       response.status(201).json({ status: "New product successfully created" });
+      mutate("/api/shoppinglist");
     }
   } catch (error) {
     console.log(error);
