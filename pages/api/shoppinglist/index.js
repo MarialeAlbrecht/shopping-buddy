@@ -15,7 +15,6 @@ export default async function handler(request, response) {
       const newProduct = request.body;
       await shoppingItem.create(newProduct);
       response.status(201).json({ status: "New product successfully created" });
-      mutate("/api/shoppinglist");
     }
   } catch (error) {
     console.log(error);
