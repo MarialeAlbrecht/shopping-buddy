@@ -27,11 +27,28 @@ export default function ProductForm({
   return (
     <form onSubmit={handleSubmit}>
       <label htmlFor="name">Add item name:</label>
-      <input type="text" id="name" name="name" required />
+      <input
+        type="text"
+        id="name"
+        name="name"
+        defaultValue={defaultData.name}
+        required
+      />
       <label htmlFor="quantity">Select the quantity:</label>
-      <input type="number" id="quantity" name="quantity" required />
+      <input
+        type="number"
+        id="quantity"
+        name="quantity"
+        defaultValue={defaultData.quantity}
+        required
+      />
       <label htmlFor="category">Select a category:</label>
-      <select id="category" name="category" required defaultValue="">
+      <select
+        id="category"
+        name="category"
+        required
+        defaultValue={defaultData.category || ""}
+      >
         <option value="" disabled>
           Categories{" "}
         </option>
@@ -42,9 +59,19 @@ export default function ProductForm({
         ))}
       </select>
       <label htmlFor="imageUrl">Add Image URL:</label>
-      <input type="url" id="imageUrl" name="imageUrl" />
+      <input
+        type="url"
+        id="imageUrl"
+        name="imageUrl"
+        defaultValue={defaultData.imgUrl}
+      />
       <label htmlFor="comment">Add a comment:</label>
-      <input type="text" id="comment" name="comment" />
+      <input
+        type="text"
+        id="comment"
+        name="comment"
+        defaultValue={defaultData.comment}
+      />
       <button type="submit">{submitLabel}</button>
       {onCancel && (
         <button type="button" onClick={onCancel}>
