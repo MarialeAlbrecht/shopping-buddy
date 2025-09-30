@@ -1,15 +1,11 @@
-import Link from "next/link";
 import styled from "styled-components";
+import Link from "next/link";
 
 export default function AddProductButton() {
-  return (
-    <StyledAddButton>
-      <Link href={`/createproduct`}> + </Link>
-    </StyledAddButton>
-  );
+  return <StyledAddButton href={`/createproduct`}> + </StyledAddButton>;
 }
 
-const StyledAddButton = styled.button`
+const StyledAddButton = styled(Link)`
   background-color: #1cd0b8ff;
   position: fixed;
   font-size: medium;

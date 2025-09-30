@@ -45,9 +45,7 @@ export default function ProductCard({ name, quantity, category, _id }) {
         <p>Name: {name}</p>
         <p>Quantity: {quantity}</p>
         <p>Category: {category}</p>
-        <Link href={`/product/${_id}`}>
-          <MoreButton>More</MoreButton>
-        </Link>
+        <MoreButton _id={_id} />
         <DeleteButton onClick={handleDelete}>❌</DeleteButton>
       </Card>
     </>
