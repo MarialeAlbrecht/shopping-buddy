@@ -22,6 +22,7 @@ export default function CreateProduct() {
     <>
       <main>
         <Link href="/">Go back</Link>
+        <h1>Add a new product:</h1>
         <ProductForm onSubmit={addProduct} />
       </main>
     </>

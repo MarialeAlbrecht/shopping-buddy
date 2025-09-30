@@ -21,7 +21,6 @@ export default function ProductForm({ onSubmit }) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <h1>Add a new product:</h1>
       <label htmlFor="name">Add item name:</label>
       <input type="text" id="name" name="name" required />
       <label htmlFor="quantity">Select the quantity:</label>
