@@ -17,9 +17,7 @@ export default function ProductCard({ name, quantity, category, _id }) {
       method: "DELETE",
     });
     if (response.ok) {
-      mutate("/api/shoppinglist", (currentData) =>
-        currentData.filter((item) => item._id !== _id)
-      );
+      mutate("/api/shoppinglist");
     } else {
     }
   }
