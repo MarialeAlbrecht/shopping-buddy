@@ -1,6 +1,11 @@
 import useSWR from "swr";
 
-export default function ProductForm({ onSubmit }) {
+export default function ProductForm({
+  onSubmit,
+  defaultData = {},
+  submitLabel = " Add new product",
+  onCancel,
+}) {
   const { data, isLoading, error } = useSWR("/api/categories");
 
   function handleSubmit(event) {
@@ -40,7 +45,12 @@ export default function ProductForm({ onSubmit }) {
       <input type="url" id="imageUrl" name="imageUrl" />
       <label htmlFor="comment">Add a comment:</label>
       <input type="text" id="comment" name="comment" />
-      <button type="submit">Add Product</button>
+      <button type="submit">{submitLabel}</button>
+      {onCancel && (
+        <button type="button" onClick={onCancel}>
+          Cancel
+        </button>
+      )}
     </form>
   );
 }

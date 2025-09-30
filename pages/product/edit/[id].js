@@ -33,7 +33,12 @@ export default function EditProduct() {
       <main>
         <Link href="/">Go back</Link>
         <h1>Edit your item here</h1>
-        <ProductForm onSubmit={EditItem} defaultData={product} />
+        <ProductForm
+          onSubmit={EditItem}
+          defaultData={product}
+          submitLabel="Save"
+          onCancel={() => router.push("/")}
+        />
       </main>
     </>
   );
