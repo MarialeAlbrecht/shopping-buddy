@@ -1,8 +1,10 @@
 import useSWR from "swr";
 import ProductCard from "./ProductCard";
+import { useState } from "react";
 
-export default function ProductList() {
+export default function ProductList({ bookmark = [], onToggleBookmark }) {
   const { data, isLoading } = useSWR("/api/shoppinglist");
+
   if (isLoading) {
     return <p>Loading...</p>;
   }
@@ -10,6 +12,7 @@ export default function ProductList() {
   if (!data) {
     return <p>Oops..we could not find any products</p>;
   }
+  const shoppingItems = data.filter((item) => !bookmark.includes(item._id));
 
   return (
     <>
@@ -19,13 +22,15 @@ export default function ProductList() {
         <h1>Your shoopping list is empty, please add new products.</h1>
       ) : (
         <ul>
-          {data.map((item) => (
+          {shoppingItems.map((item) => (
             <ProductCard
               key={item._id}
               _id={item._id}
               name={item.name}
               quantity={item.quantity}
               category={item.category}
+              bookmark={bookmark}
+              onToggleBookmark={onToggleBookmark}
             />
           ))}
         </ul>

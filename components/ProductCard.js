@@ -6,7 +6,14 @@ import { mutate } from "swr";
 import EditButton from "./EditButton";
 import BookmarkItems from "./BookmarkedItems";
 
-export default function ProductCard({ name, quantity, category, _id }) {
+export default function ProductCard({
+  name,
+  quantity,
+  category,
+  _id,
+  bookmark,
+  onToggleBookmark,
+}) {
   const router = useRouter();
   async function handleDelete() {
     const confirmed = window.confirm(
@@ -38,6 +45,8 @@ export default function ProductCard({ name, quantity, category, _id }) {
 
   const color = categoryColors[category];
 
+  const isBookmarked = bookmark.includes(_id);
+
   return (
     <>
       <Card $categoryColor={color}>
@@ -50,7 +59,7 @@ export default function ProductCard({ name, quantity, category, _id }) {
         <BookmarkItems
           id={_id}
           isBookmarked={isBookmarked}
-          onToggle={onToggle}
+          onToggle={onToggleBookmark}
         />
       </Card>
     </>
