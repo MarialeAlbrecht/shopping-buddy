@@ -1,7 +1,12 @@
 import useSWR from "swr";
 
-export default function ProductForm({ onSubmit }) {
-  const { data, isLoading, error } = useSWR("/api/categories");
+export default function ProductForm({
+  onSubmit,
+  defaultData = {},
+  submitLabel = "Add new product",
+  onCancel,
+}) {
+  const { data: categories, isLoading, error } = useSWR("/api/categories");
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -21,27 +26,58 @@ export default function ProductForm({ onSubmit }) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <h1>Add a new product:</h1>
       <label htmlFor="name">Add item name:</label>
-      <input type="text" id="name" name="name" required />
+      <input
+        type="text"
+        id="name"
+        name="name"
+        defaultValue={defaultData.name}
+        required
+      />
       <label htmlFor="quantity">Select the quantity:</label>
-      <input type="number" id="quantity" name="quantity" required />
+      <input
+        type="number"
+        id="quantity"
+        name="quantity"
+        defaultValue={defaultData.quantity}
+        required
+      />
       <label htmlFor="category">Select a category:</label>
-      <select id="category" name="category" required defaultValue="">
+      <select
+        id="category"
+        name="category"
+        required
+        defaultValue={defaultData.category || ""}
+      >
         <option value="" disabled>
           Categories{" "}
         </option>
-        {data.map((category) => (
+        {categories.map((category) => (
           <option key={category._id} value={category.category}>
             {category.category}
           </option>
         ))}
       </select>
       <label htmlFor="imageUrl">Add Image URL:</label>
-      <input type="url" id="imageUrl" name="imageUrl" />
+      <input
+        type="url"
+        id="imageUrl"
+        name="imageUrl"
+        defaultValue={defaultData.imgUrl}
+      />
       <label htmlFor="comment">Add a comment:</label>
-      <input type="text" id="comment" name="comment" />
-      <button type="submit">Add Product</button>
+      <input
+        type="text"
+        id="comment"
+        name="comment"
+        defaultValue={defaultData.comment}
+      />
+      <button type="submit">{submitLabel}</button>
+      {onCancel && (
+        <button type="button" onClick={onCancel}>
+          Cancel
+        </button>
+      )}
     </form>
   );
 }

@@ -1,9 +1,9 @@
 import styled, { css } from "styled-components";
 import MoreButton from "./MoreButton";
-import Link from "next/link";
 import DeleteButton from "./DeleteButton";
 import { useRouter } from "next/router";
 import { mutate } from "swr";
+import EditButton from "./EditButton";
 
 export default function ProductCard({ name, quantity, category, _id }) {
   const router = useRouter();
@@ -45,6 +45,7 @@ export default function ProductCard({ name, quantity, category, _id }) {
         <p>Category: {category}</p>
         <MoreButton _id={_id} />
         <DeleteButton onClick={handleDelete}>❌</DeleteButton>
+        <EditButton _id={_id} />
       </Card>
     </>
   );
