@@ -4,6 +4,7 @@ import DeleteButton from "./DeleteButton";
 import { useRouter } from "next/router";
 import { mutate } from "swr";
 import EditButton from "./EditButton";
+import BookmarkItems from "./BookmarkedItems";
 
 export default function ProductCard({ name, quantity, category, _id }) {
   const router = useRouter();
@@ -46,6 +47,11 @@ export default function ProductCard({ name, quantity, category, _id }) {
         <MoreButton _id={_id} />
         <DeleteButton onClick={handleDelete}>❌</DeleteButton>
         <EditButton _id={_id} />
+        <BookmarkItems
+          id={_id}
+          isBookmarked={isBookmarked}
+          onToggle={onToggle}
+        />
       </Card>
     </>
   );
