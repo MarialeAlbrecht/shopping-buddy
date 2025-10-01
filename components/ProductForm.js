@@ -3,10 +3,10 @@ import useSWR from "swr";
 export default function ProductForm({
   onSubmit,
   defaultData = {},
-  submitLabel = " Add new product",
+  submitLabel = "Add new product",
   onCancel,
 }) {
-  const { data, isLoading, error } = useSWR("/api/categories");
+  const { data: categories, isLoading, error } = useSWR("/api/categories");
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -52,7 +52,7 @@ export default function ProductForm({
         <option value="" disabled>
           Categories{" "}
         </option>
-        {data.map((category) => (
+        {categories.map((category) => (
           <option key={category._id} value={category.category}>
             {category.category}
           </option>

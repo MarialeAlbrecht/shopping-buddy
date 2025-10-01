@@ -9,14 +9,14 @@ export default function EditProduct() {
   const { data: product, isLoading, error } = useSWR(`/api/shoppinglist/${id}`);
 
   if (error) {
-    return <p>We couldn`t edit the item...</p>;
+    return <p>An error occured...</p>;
   }
 
   if (isLoading) {
     return <p>Loading...</p>;
   }
 
-  async function EditItem(updatedProduct) {
+  async function handleEditItem(updatedProduct) {
     const reponse = await fetch(`/api/shoppinglist/${id}`, {
       method: "PUT",
       headers: {
@@ -34,7 +34,7 @@ export default function EditProduct() {
         <Link href="/">Go back</Link>
         <h1>Edit your item here</h1>
         <ProductForm
-          onSubmit={EditItem}
+          onSubmit={handleEditItem}
           defaultData={product}
           submitLabel="Save"
           onCancel={() => router.push("/")}
