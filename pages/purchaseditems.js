@@ -19,6 +19,7 @@ export default function Purchased({ bookmark = [], onToggleBookmark }) {
   return (
     <main>
       <h1>Here are your purchased items:</h1>
+      <h2>You have purchased {purchasedItems.length} products.</h2>
       {purchasedItems.length === 0 && (
         <h2>
           No products were purchased. You can add purchased products from your
