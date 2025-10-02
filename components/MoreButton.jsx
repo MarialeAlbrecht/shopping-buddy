@@ -9,5 +9,4 @@ const StyledMoreButton = styled(Link)`
   background-color: #808080;
   border-radius: 6px;
   font-size: small;
-  text-alig: left;
 `;
