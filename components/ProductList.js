@@ -17,7 +17,7 @@ export default function ProductList({ bookmark = [], onToggleBookmark }) {
   return (
     <>
       <h1>Here is your shopping list</h1>
-      <h2>You have {data.length} products in total.</h2>
+      <h2>You have {shoppingItems.length} products to buy.</h2>
       {data.length === 0 ? (
         <h1>Your shoopping list is empty, please add new products.</h1>
       ) : (
