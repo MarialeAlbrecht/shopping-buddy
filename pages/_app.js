@@ -5,10 +5,10 @@ import { useState } from "react";
 const fetcher = (url) => fetch(url).then((response) => response.json());
 
 export default function App({ Component, pageProps }) {
-  const [bookmark, setBookmarks] = useState([]);
+  const [bookmark, setBookmark] = useState([]);
 
   function handleToggleBookmark(id) {
-    setBookmarks((prev) =>
+    setBookmark((prev) =>
       prev.includes(id) ? prev.filter((list) => list !== id) : [...prev, id]
     );
   }
