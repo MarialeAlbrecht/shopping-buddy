@@ -2,6 +2,7 @@ import GlobalStyle from "../styles";
 import { SWRConfig } from "swr";
 import useLocalStorageState from "use-local-storage-state";
 import { useEffect } from "react";
+import Header from "@/components/Header";
 
 const fetcher = (url) => fetch(url).then((response) => response.json());
 
@@ -24,6 +25,7 @@ export default function App({ Component, pageProps }) {
     <>
       <SWRConfig value={{ fetcher }}>
         <GlobalStyle />
+        <Header />
         <Component
           {...pageProps}
           bookmark={bookmark}
