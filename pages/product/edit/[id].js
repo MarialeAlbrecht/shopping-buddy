@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import useSWR from "swr";
 import ProductForm from "@/components/ProductForm";
 import Link from "next/link";
+import styled from "styled-components";
 
 export default function EditProduct() {
   const router = useRouter();
@@ -30,16 +31,24 @@ export default function EditProduct() {
   }
   return (
     <>
-      <main>
-        <Link href="/">Go back</Link>
-        <h1>Edit your item here</h1>
-        <ProductForm
-          onSubmit={handleEditItem}
-          defaultData={product}
-          submitLabel="Save"
-          onCancel={() => router.push("/")}
-        />
-      </main>
+      <PageWrapper>
+        <main>
+          <Link href="/">Go back</Link>
+          <h1>Edit your item here</h1>
+          <ProductForm
+            onSubmit={handleEditItem}
+            defaultData={product}
+            submitLabel="Save"
+            onCancel={() => router.push("/")}
+          />
+        </main>
+      </PageWrapper>
     </>
   );
 }
+const PageWrapper = styled.div`
+  padding-top: 80px;
+  padding-bottom: 70px;
+  max-width: 800px;
+  margin: 0 auto;
+`;
