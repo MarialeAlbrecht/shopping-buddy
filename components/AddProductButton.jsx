@@ -6,16 +6,18 @@ export default function AddProductButton() {
 }
 
 const StyledAddButton = styled(Link)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: #1cd0b8ff;
   position: fixed;
   font-size: medium;
   right: 20px;
-  bottom: 40px;
+  bottom: 80px;
   width: 70px;
   height: 70px;
-  appearance: none;
-  border: none;
   padding: 10px;
   border-radius: 50%;
   outline: none;
+  text-decoration: none;
 `;

@@ -36,7 +36,6 @@ export default function Purchased({ bookmark = [], onToggleBookmark }) {
           />
         ))}
       </ul>
-      <Link href="/"> Shopping List</Link>
     </main>
   );
 }
