@@ -18,15 +18,17 @@ export default function ProductDetail() {
       <main>
         <Link href={"/"}>Go Back</Link>
         <h1>{product.name}</h1>
-        <Image
-          src={product.imageUrl}
-          alt={product.name}
-          width={300}
-          height={200}
-        />
+        {product.imageUrl && (
+          <Image
+            src={product.imageUrl}
+            alt={product.name}
+            width={300}
+            height={200}
+          />
+        )}
         <p>Quantity: {product.quantity}</p>
         <p>Category: {product.category}</p>
-        <p>Comment: {product.comment}</p>
+        {product.comment && <p>Comment: {product.comment}</p>}
       </main>
     </PageWrapper>
   );

@@ -40,6 +40,7 @@ export default function ProductForm({
         id="quantity"
         name="quantity"
         defaultValue={defaultData.quantity}
+        min={1}
         required
       />
       <label htmlFor="category">Select a category:</label>
