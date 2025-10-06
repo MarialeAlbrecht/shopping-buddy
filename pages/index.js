@@ -6,10 +6,18 @@ import styled from "styled-components";
 
 export default function HomePage({ bookmark, onToggleBookmark }) {
   const [selectCategory, setSelectCategory] = useState(null);
+
+  function handleSelectCategory(category) {
+    if (selectCategory === category) {
+      setSelectCategory(null);
+    } else {
+      setSelectCategory(category);
+    }
+  }
   return (
     <PageWrapper>
       <AddProductButton />
-      <CategoryFilter onSelectCategory={setSelectCategory} />
+      <CategoryFilter onSelectCategory={handleSelectCategory} />
       <ProductList
         bookmark={bookmark}
         onToggleBookmark={onToggleBookmark}
