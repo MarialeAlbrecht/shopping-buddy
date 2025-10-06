@@ -36,6 +36,7 @@ export default function EditProduct() {
           <Link href="/">Go back</Link>
           <h1>Edit your item here</h1>
           <ProductForm
+            key={product._id}
             onSubmit={handleEditItem}
             defaultData={product}
             submitLabel="Save"
