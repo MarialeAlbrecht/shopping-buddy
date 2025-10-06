@@ -1,9 +1,12 @@
+import { type } from "@testing-library/user-event/dist/types/utility";
 import mongoose from "mongoose";
 const { Schema } = mongoose;
 
 const categoriesSchema = new Schema(
   {
     category: { type: String, required: true },
+    color: { type: String, required: true },
+    emoji: { type: String, required: true },
   },
   { collection: "category" }
 );
