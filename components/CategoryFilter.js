@@ -13,12 +13,13 @@ export default function CategoryFilter({ onSelectCategory }) {
   return (
     <div>
       {categories.map((category) => (
-        <div
+        <button
           key={category._id}
           onClick={() => onSelectCategory(category.category)}
         >
-          <span>{category.emoji}</span>,<span>{category.category}</span>,
-        </div>
+          <span>{category.emoji}</span>
+          <span>{category.category}</span>
+        </button>
       ))}
     </div>
   );

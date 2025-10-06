@@ -1,4 +1,3 @@
-import { type } from "@testing-library/user-event/dist/types/utility";
 import mongoose from "mongoose";
 const { Schema } = mongoose;
 
