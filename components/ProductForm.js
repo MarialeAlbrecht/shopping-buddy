@@ -1,4 +1,5 @@
 import useSWR from "swr";
+import styled from "styled-components";
 
 export default function ProductForm({
   onSubmit,
@@ -25,8 +26,8 @@ export default function ProductForm({
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="name">Add item name:</label>
+    <StyledForm onSubmit={handleSubmit}>
+      <StyledLabel htmlFor="name">Product name:</StyledLabel>
       <input
         type="text"
         id="name"
@@ -34,7 +35,7 @@ export default function ProductForm({
         defaultValue={defaultData.name}
         required
       />
-      <label htmlFor="quantity">Select the quantity:</label>
+      <StyledLabel htmlFor="quantity">Quantity:</StyledLabel>
       <input
         type="number"
         id="quantity"
@@ -43,7 +44,7 @@ export default function ProductForm({
         min={1}
         required
       />
-      <label htmlFor="category">Select a category:</label>
+      <StyledLabel htmlFor="category">Select a category:</StyledLabel>
       <select
         id="category"
         name="category"
@@ -59,26 +60,56 @@ export default function ProductForm({
           </option>
         ))}
       </select>
-      <label htmlFor="imageUrl">Add Image URL:</label>
+      <StyledLabel htmlFor="imageUrl">Image URL:</StyledLabel>
       <input
         type="url"
         id="imageUrl"
         name="imageUrl"
         defaultValue={defaultData.imgUrl}
       />
-      <label htmlFor="comment">Add a comment:</label>
+      <StyledLabel htmlFor="comment">Additional comments:</StyledLabel>
       <input
         type="text"
         id="comment"
         name="comment"
         defaultValue={defaultData.comment}
       />
-      <button type="submit">{submitLabel}</button>
+      <SubmitButton type="submit">{submitLabel}</SubmitButton>
       {onCancel && (
         <button type="button" onClick={onCancel}>
           Cancel
         </button>
       )}
-    </form>
+    </StyledForm>
   );
 }
+
+const StyledForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background: white;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 400px;
+  font-family: Helvetica, Arial, sans-serif;
+  color: #1e1d6d;
+`;
+
+const SubmitButton = styled.button`
+  background-color: #04c6a3;
+  color: #1e1d6d;
+  border: none;
+  border-radius: 1.5rem;
+  padding: 0.5rem 1rem;
+  font-family: inherit;
+  font-weight: bold;
+  font-size: medium;
+  width: auto;
+  white-space: nowrap;
+`;
+
+const StyledLabel = styled.label`
+  font-weight: bold;
+`;
