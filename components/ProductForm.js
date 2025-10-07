@@ -65,7 +65,7 @@ export default function ProductForm({
         type="url"
         id="imageUrl"
         name="imageUrl"
-        defaultValue={defaultData.imgUrl}
+        defaultValue={defaultData.imageUrl}
       />
       <StyledLabel htmlFor="comment">Additional comments:</StyledLabel>
       <input
@@ -76,9 +76,9 @@ export default function ProductForm({
       />
       <SubmitButton type="submit">{submitLabel}</SubmitButton>
       {onCancel && (
-        <button type="button" onClick={onCancel}>
+        <CancelButton type="button" onClick={onCancel}>
           Cancel
-        </button>
+        </CancelButton>
       )}
     </StyledForm>
   );
@@ -103,13 +103,24 @@ const SubmitButton = styled.button`
   border: none;
   border-radius: 1.5rem;
   padding: 0.5rem 1rem;
-  font-family: inherit;
+  font-family: Helvetica, Arial, sans-serif;
   font-weight: bold;
-  font-size: medium;
+  font-size: 14px;
   width: auto;
   white-space: nowrap;
 `;
 
 const StyledLabel = styled.label`
+  font-weight: bold;
+`;
+
+const CancelButton = styled.button`
+  background-color: white;
+  color: #1e1d6d;
+  border: 2px solid #1e1d6d;
+  border-radius: 2.5rem;
+  padding: 0.5rem 1rem;
+  font-size: 14px;
+  font-family: Helvetica, Arial, sans-serif;
   font-weight: bold;
 `;

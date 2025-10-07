@@ -1,7 +1,6 @@
 import { useRouter } from "next/router";
 import useSWR from "swr";
 import ProductForm from "@/components/ProductForm";
-import Link from "next/link";
 import styled from "styled-components";
 
 export default function EditProduct() {
@@ -33,7 +32,6 @@ export default function EditProduct() {
     <>
       <PageWrapper>
         <main>
-          <Link href="/">Go back</Link>
           <h1>Edit your item here</h1>
           <ProductForm
             key={product._id}
@@ -48,8 +46,13 @@ export default function EditProduct() {
   );
 }
 const PageWrapper = styled.div`
-  padding-top: 80px;
+  display: flex;
+  justify-content: center;
+  padding-top: 120px;
+  padding-left: 30px;
   padding-bottom: 70px;
   max-width: 800px;
   margin: 0 auto;
+  font-family: Helvetica, Arial, sans-serif;
+  color: #1e1d6d;
 `;
