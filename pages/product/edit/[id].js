@@ -32,7 +32,7 @@ export default function EditProduct() {
     <>
       <PageWrapper>
         <main>
-          <h1>Edit your item here</h1>
+          <h1>Edit your item here:</h1>
           <ProductForm
             key={product._id}
             onSubmit={handleEditItem}

@@ -3,6 +3,7 @@ import useSWR from "swr";
 import Image from "next/image";
 import Link from "next/link";
 import styled from "styled-components";
+import exit from "@/assets/exit.png";
 
 export default function ProductDetail() {
   const router = useRouter();
@@ -16,27 +17,58 @@ export default function ProductDetail() {
   return (
     <PageWrapper>
       <main>
-        <Link href={"/"}>Go Back</Link>
-        <h1>{product.name}</h1>
+        <Link href={"/"}>
+          <Icon src={exit} alt="Go Back" width={30} height={30} />
+        </Link>
+        <Title>{product.name}</Title>
         {product.imageUrl && (
-          <Image
+          <ProductImage
             src={product.imageUrl}
             alt={product.name}
             width={300}
             height={200}
           />
         )}
-        <p>Quantity: {product.quantity}</p>
-        <p>Category: {product.category}</p>
-        {product.comment && <p>Comment: {product.comment}</p>}
+        <p>
+          <strong>Quantity:</strong> {product.quantity}
+        </p>
+        <p>
+          <strong>Category:</strong> {product.category}
+        </p>
+        {product.comment && (
+          <p>
+            <strong>Comment: </strong>
+            {product.comment}
+          </p>
+        )}
       </main>
     </PageWrapper>
   );
 }
 
 const PageWrapper = styled.div`
-  padding-top: 80px;
+  display: flex;
+  justify-content: center;
+  padding-top: 120px;
+  padding-left: 30px;
   padding-bottom: 70px;
   max-width: 800px;
   margin: 0 auto;
+  font-family: Helvetica, Arial, sans-serif;
+  color: #1e1d6d;
+`;
+const Icon = styled(Image)`
+  position: absolute;
+  top: -0, 2rem;
+  right: 33%;
+  bottom: 79.5%;
+`;
+
+const Title = styled.h1`
+  display: flex;
+  justify-content: center;
+`;
+
+const ProductImage = styled(Image)`
+  border-radius: 20px;
 `;
