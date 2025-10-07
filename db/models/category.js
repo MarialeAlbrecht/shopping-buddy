@@ -4,6 +4,8 @@ const { Schema } = mongoose;
 const categoriesSchema = new Schema(
   {
     category: { type: String, required: true },
+    color: { type: String, required: true },
+    emoji: { type: String, required: true },
   },
   { collection: "category" }
 );
