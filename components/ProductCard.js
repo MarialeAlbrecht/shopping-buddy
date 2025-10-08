@@ -104,7 +104,7 @@ const Card = styled.section`
 const CategoryLabel = styled.label`
   background-color: ${({ $color }) => $color};
   color: #1e1d6d;
-  padding: 0.2rem 0.5rem;
+  padding: 0.2rem 1.5rem;
   border-radius: 0.5rem;
   font-size: 1rem;
   font-weight: bold;
@@ -133,7 +133,7 @@ const ButtonRow = styled.div`
   }
 
   > * + * {
-    border-left: 1px solid white;
+    border-left: 4px solid white;
   }
 `;
 const PurchasedButton = styled.div`

@@ -24,6 +24,7 @@ const StyledEditButton = styled(Link)`
   color: white;
   font-size: 0.8rem;
   text-decoration: none;
+  cursor: pointer;
 `;
 const Icon = styled(Image)`
   width: 24px;
