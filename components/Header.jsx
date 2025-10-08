@@ -7,10 +7,11 @@ export default function Header() {
 const Title = styled.h1`
   text-align: center;
   font-size: 2rem;
-  background-color: #097969;
+  background-color: #1e1d6d;
+  font-family: Helvetica, Arial, sans-serif;
   color: white;
   margin: 0;
-  padding: 1rem;
+  padding: 2rem;
   position: fixed;
   top: 0;
   left: 0;

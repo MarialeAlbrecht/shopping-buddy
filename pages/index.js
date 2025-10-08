@@ -28,6 +28,6 @@ export default function HomePage({ bookmark, onToggleBookmark }) {
 }
 
 const PageWrapper = styled.div`
-  padding-top: 80px;
-  padding-bottom: 20px;
+  padding-top: 120px;
+  padding-bottom: 70px;
 `;
