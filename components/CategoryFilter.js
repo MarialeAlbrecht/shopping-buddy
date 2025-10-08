@@ -42,11 +42,18 @@ export default function CategoryFilter({ onSelectCategory }) {
 
 const ButtonContainer = styled.section`
   display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  padding: 0.2rem 1rem;
   gap: 1rem;
   margin-top: 1rem;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  @media (min-width: 768px) {
+    justify-content: center;
+    overflow-x: visible; /* no scroll needed on desktop */
+  }
 `;
 
 const Button = styled.button`
