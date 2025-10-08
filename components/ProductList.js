@@ -1,5 +1,6 @@
 import useSWR from "swr";
 import ProductCard from "./ProductCard";
+import styled from "styled-components";
 
 export default function ProductList({
   bookmark = [],
@@ -24,13 +25,13 @@ export default function ProductList({
   }
 
   return (
-    <>
+    <PageWrapper>
       <h1>Here is your shopping list</h1>
       <h2>You have {shoppingItems.length} products to buy.</h2>
       {data.length === 0 ? (
-        <h1>Your shoopping list is empty, please add new products.</h1>
+        <p>Your shoopping list is empty, please add new products.</p>
       ) : (
-        <ul>
+        <List>
           {shoppingItems.map((item) => (
             <ProductCard
               key={item._id}
@@ -42,8 +43,21 @@ export default function ProductList({
               onToggleBookmark={onToggleBookmark}
             />
           ))}
-        </ul>
+        </List>
       )}
-    </>
+    </PageWrapper>
   );
 }
+const PageWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding-top: 40px;
+  padding-bottom: 70px;
+  max-width: 80%;
+  margin: 0 auto;
+  font-family: Helvetica, Arial, sans-serif;
+  color: #1e1d6d;
+`;
+const List = styled.ul`
+  list-style: none;
+`;
