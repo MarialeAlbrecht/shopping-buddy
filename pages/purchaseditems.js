@@ -17,14 +17,14 @@ export default function Purchased({ bookmark = [], onToggleBookmark }) {
   );
 
   return (
-    <PageWrapper>
-      <main>
+    <Main>
+      <PageWrapper>
         <h1>Here are your purchased items:</h1>
         <h2>You have purchased {purchasedItems.length} products.</h2>
         {purchasedItems.length === 0 && (
           <p>You can add purchased products from your shoppinglist.</p>
         )}
-        <ul>
+        <ProductList>
           {purchasedItems.map((product) => (
             <ProductCard
               key={product._id}
@@ -33,17 +33,32 @@ export default function Purchased({ bookmark = [], onToggleBookmark }) {
               onToggleBookmark={onToggleBookmark}
             />
           ))}
-        </ul>
-      </main>
-    </PageWrapper>
+        </ProductList>
+      </PageWrapper>
+    </Main>
   );
 }
-const PageWrapper = styled.div`
+const Main = styled.div`
   display: flex;
-  padding-top: 120px;
+  flex-direction: column;
+  padding-top: 80px;
   padding-bottom: 70px;
-  max-width: 800px;
+  max-width: 80%;
   margin: 0 auto;
   font-family: Helvetica, Arial, sans-serif;
   color: #1e1d6d;
+`;
+
+const PageWrapper = styled.div`
+  padding-top: 40px;
+  padding-bottom: 70px;
+  max-width: 100%;
+  margin: 0 auto;
+  font-family: Helvetica, Arial, sans-serif;
+  color: #1e1d6d;
+`;
+const ProductList = styled.ul`
+  list-style: none;
+  padding: 0;
+  margin: 0;
 `;

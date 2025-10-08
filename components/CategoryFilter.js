@@ -23,7 +23,7 @@ export default function CategoryFilter({ onSelectCategory }) {
   }
 
   return (
-    <>
+    <ButtonContainer>
       {categories.map((category) => (
         <Button
           type="button"
@@ -32,15 +32,46 @@ export default function CategoryFilter({ onSelectCategory }) {
           $color={category.color}
           $selected={selectedCategory === category._id}
         >
-          <span>{category.emoji}</span>
+          <Emoji>{category.emoji}</Emoji>
           <span>{category.category}</span>
         </Button>
       ))}
-    </>
+    </ButtonContainer>
   );
 }
+
+const ButtonContainer = styled.section`
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  padding: 0.2rem 1rem;
+  gap: 1rem;
+  margin-top: 1rem;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  @media (min-width: 768px) {
+    justify-content: center;
+    overflow-x: visible; /* no scroll needed on desktop */
+  }
+`;
 
 const Button = styled.button`
   background-color: ${({ $selected, $color }) =>
     $selected ? $color : "transparent"};
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  color: #1e1d6d;
+  font-weight: bold;
+  padding: 1rem;
+  border: 2px solid ${({ $color }) => $color};
+  border-radius: 1rem;
+  font-family: Helvetica, Arial, sans-serif;
+`;
+
+const Emoji = styled.span`
+  font-size: 1.5rem;
 `;

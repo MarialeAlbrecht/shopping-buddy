@@ -1,10 +1,12 @@
 import styled, { css } from "styled-components";
 import MoreButton from "./MoreButton";
 import DeleteButton from "./DeleteButton";
-import { useRouter } from "next/router";
 import { mutate } from "swr";
 import EditButton from "./EditButton";
 import BookmarkItems from "./BookmarkedItems";
+import useSWR from "swr";
+import Image from "next/image";
+import trash from "@/assets/trash.png";
 
 export default function ProductCard({
   name,
@@ -14,7 +16,17 @@ export default function ProductCard({
   bookmark,
   onToggleBookmark,
 }) {
-  const router = useRouter();
+  const { data: categories, isLoading, error } = useSWR("/api/categories");
+  if (isLoading) {
+    return <p>Loading....</p>;
+  }
+  if (error) {
+    return <p>Error loading the categories...</p>;
+  }
+
+  const color = categories?.find((cat) => cat.category === category)?.color;
+
+  // const router = useRouter();
   async function handleDelete() {
     const confirmed = window.confirm(
       `Are you sure you want to delete "${name}"?`
@@ -30,46 +42,110 @@ export default function ProductCard({
     }
   }
 
-  const categoryColors = {
-    Dairy: "pink",
-    Bakery: "wheat",
-    Fruits: "lightgreen",
-    Vegetables: "darkgreen",
-    Meat: "salmon",
-    Beverages: "lightgray",
-    Snacks: "skyblue",
-    Household: "lightyellow",
-    "Personal Care": "purple",
-    Other: "red",
-  };
-
-  const color = categoryColors[category];
-
   const isBookmarked = bookmark.includes(_id);
 
   return (
     <>
       <Card $categoryColor={color}>
-        <p>Name: {name}</p>
-        <p>Quantity: {quantity}</p>
-        <p>Category: {category}</p>
-        <MoreButton _id={_id} />
-        <DeleteButton onClick={handleDelete}>❌</DeleteButton>
-        <EditButton _id={_id} />
-        <BookmarkItems
-          id={_id}
-          isBookmarked={isBookmarked}
-          onToggle={onToggleBookmark}
-        />
+        <h2>{name}</h2>
+        <p>
+          <strong>Quantity:</strong> {quantity}
+        </p>
+        <CategoryLabel $color={color}>{category}</CategoryLabel>
+        <ButtonRow>
+          <MoreButton _id={_id} />
+          <EditButton _id={_id} />
+          <DeleteButton onClick={handleDelete}>
+            <Icon src={trash} alt="Remove button" width={24} height={24} />
+            <strong>Remove</strong>
+          </DeleteButton>
+        </ButtonRow>
+        <PurchasedButton>
+          <BookmarkItems
+            id={_id}
+            isBookmarked={isBookmarked}
+            onToggle={onToggleBookmark}
+          />
+        </PurchasedButton>
       </Card>
     </>
   );
 }
 
-const Card = styled.li`
-  ${({ $categoryColor }) =>
-    $categoryColor &&
-    css`
-      background-color: ${$categoryColor};
-    `}
+const Card = styled.section`
+  position: relative;
+  background-color: white;
+  border: 2px solid #1e1d6d;
+  padding-top: 120px;
+  padding-bottom: 70px;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1rem;
+  border-radius: 1rem;
+  gap: 0.25rem;
+  display: flex;
+  flex-direction: column;
+  font-family: Helvetica, Arial, sans-serif;
+
+  color: #1e1d6d;
+  width: 100%;
+  min-width: 200px;
+  margin-bottom: 1.5rem;
+  h2 {
+    margin: 0;
+    line-height: 2;
+  }
+  p {
+    margin: 0;
+    line-height: 1.5;
+  }
+`;
+
+const CategoryLabel = styled.label`
+  background-color: ${({ $color }) => $color};
+  color: #1e1d6d;
+  padding: 0.2rem 1.5rem;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  align-self: flex-start;
+`;
+const Icon = styled(Image)`
+  width: 24px;
+  height: 24px;
+`;
+
+const ButtonRow = styled.div`
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  > * {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0;
+    position: relative;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+  }
+
+  > * + * {
+    border-left: 4px solid white;
+  }
+`;
+const PurchasedButton = styled.div`
+  position: absolute;
+  top: 1rem;
+  right: 1.2rem;
+  border-radius: 50%;
+  border: 2px solid #1e1d6d;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
 `;
