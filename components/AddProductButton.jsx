@@ -26,6 +26,7 @@ const StyledAddButton = styled(Link)`
   border-radius: 50%;
   outline: none;
   text-decoration: none;
+  z-index: 2;
 `;
 const Icon = styled(Image)`
   position: absolute;

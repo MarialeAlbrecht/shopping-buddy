@@ -60,17 +60,20 @@ export default function ProductCard({
             <strong>Remove</strong>
           </DeleteButton>
         </ButtonRow>
-        <BookmarkItems
-          id={_id}
-          isBookmarked={isBookmarked}
-          onToggle={onToggleBookmark}
-        />
+        <PurchasedButton>
+          <BookmarkItems
+            id={_id}
+            isBookmarked={isBookmarked}
+            onToggle={onToggleBookmark}
+          />
+        </PurchasedButton>
       </Card>
     </>
   );
 }
 
 const Card = styled.section`
+  position: relative;
   background-color: white;
   border: 2px solid #1e1d6d;
   padding-top: 120px;
@@ -85,6 +88,7 @@ const Card = styled.section`
   font-family: Helvetica, Arial, sans-serif;
 
   color: #1e1d6d;
+  width: 100%;
   min-width: 200px;
   margin-bottom: 1.5rem;
   h2 {
@@ -131,4 +135,17 @@ const ButtonRow = styled.div`
   > * + * {
     border-left: 1px solid white;
   }
+`;
+const PurchasedButton = styled.div`
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  border-radius: 50%;
+  border: 2px solid #1e1d6d;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
 `;

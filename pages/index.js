@@ -28,6 +28,12 @@ export default function HomePage({ bookmark, onToggleBookmark }) {
 }
 
 const PageWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
   padding-top: 120px;
   padding-bottom: 70px;
+  max-width: 800px;
+  margin: 0 auto;
+  font-family: Helvetica, Arial, sans-serif;
+  color: #1e1d6d;
 `;

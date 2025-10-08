@@ -49,8 +49,6 @@ export default function ProductList({
   );
 }
 const PageWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
   padding-top: 40px;
   padding-bottom: 70px;
   max-width: 80%;
