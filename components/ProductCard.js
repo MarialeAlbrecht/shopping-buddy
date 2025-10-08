@@ -5,6 +5,8 @@ import { mutate } from "swr";
 import EditButton from "./EditButton";
 import BookmarkItems from "./BookmarkedItems";
 import useSWR from "swr";
+import Image from "next/image";
+import trash from "@/assets/trash.png";
 
 export default function ProductCard({
   name,
@@ -50,9 +52,14 @@ export default function ProductCard({
           <strong>Quantity:</strong> {quantity}
         </p>
         <CategoryLabel $color={color}>{category}</CategoryLabel>
-        <MoreButton _id={_id} />
-        <DeleteButton onClick={handleDelete}>❌</DeleteButton>
-        <EditButton _id={_id} />
+        <ButtonRow>
+          <MoreButton _id={_id} />
+          <EditButton _id={_id} />
+          <DeleteButton onClick={handleDelete}>
+            <Icon src={trash} alt="Remove button" width={24} height={24} />
+            <strong>Remove</strong>
+          </DeleteButton>
+        </ButtonRow>
         <BookmarkItems
           id={_id}
           isBookmarked={isBookmarked}
@@ -98,4 +105,30 @@ const CategoryLabel = styled.label`
   font-size: 1rem;
   font-weight: bold;
   align-self: flex-start;
+`;
+const Icon = styled(Image)`
+  width: 24px;
+  height: 24px;
+`;
+
+const ButtonRow = styled.div`
+  display: flex;
+  width: 100%;
+
+  > * {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0;
+    position: relative;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+  }
+
+  > * + * {
+    border-left: 1px solid white;
+  }
 `;
