@@ -49,7 +49,7 @@ export default function ProductList({
   );
 }
 const PageWrapper = styled.div`
-  padding-top: 40px;
+  padding-top: 10px;
   padding-bottom: 70px;
   max-width: 80%;
   margin: 0 auto;
@@ -58,4 +58,6 @@ const PageWrapper = styled.div`
 `;
 const List = styled.ul`
   list-style: none;
+  padding: 0;
+  margin: 0;
 `;

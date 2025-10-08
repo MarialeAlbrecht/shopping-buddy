@@ -52,11 +52,13 @@ const Main = styled.div`
 const PageWrapper = styled.div`
   padding-top: 40px;
   padding-bottom: 70px;
-  max-width: 80%;
+  max-width: 100%;
   margin: 0 auto;
   font-family: Helvetica, Arial, sans-serif;
   color: #1e1d6d;
 `;
 const ProductList = styled.ul`
   list-style: none;
+  padding: 0;
+  margin: 0;
 `;

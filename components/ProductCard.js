@@ -80,7 +80,7 @@ const Card = styled.section`
   padding-bottom: 70px;
   max-width: 800px;
   margin: 0 auto;
-  padding: 1rem 1.5rem;
+  padding: 1rem;
   border-radius: 1rem;
   gap: 0.25rem;
   display: flex;
@@ -118,7 +118,7 @@ const Icon = styled(Image)`
 const ButtonRow = styled.div`
   display: flex;
   width: 100%;
-
+  flex-wrap: wrap;
   > * {
     flex: 1;
     display: flex;
@@ -139,7 +139,7 @@ const ButtonRow = styled.div`
 const PurchasedButton = styled.div`
   position: absolute;
   top: 1rem;
-  right: 1rem;
+  right: 1.2rem;
   border-radius: 50%;
   border: 2px solid #1e1d6d;
   width: 44px;
