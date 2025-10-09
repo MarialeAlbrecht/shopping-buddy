@@ -5,17 +5,18 @@ import styled from "styled-components";
 export default function RandomRecipe() {
   const [recipe, setRecipe] = useState();
 
-  useEffect(() => {
-    async function fetchRecipe() {
-      const response = await fetch(
-        "https://www.themealdb.com/api/json/v1/1/random.php"
-      );
-      if (!response.ok) {
-        throw new Error("An error ocurred");
-      }
-      const data = await response.json();
-      setRecipe(data.meals[0]);
+  async function fetchRecipe() {
+    const response = await fetch(
+      "https://www.themealdb.com/api/json/v1/1/random.php"
+    );
+    if (!response.ok) {
+      throw new Error("An error ocurred");
     }
+    const data = await response.json();
+    setRecipe(data.meals[0]);
+  }
+
+  useEffect(() => {
     fetchRecipe();
   }, []);
 
@@ -49,6 +50,9 @@ export default function RandomRecipe() {
       </ul>
       <h2>Instructions</h2>
       <p>{recipe.strInstructions}</p>
+      <button type="button" onClick={fetchRecipe}>
+        <h2>Get another recipe</h2>
+      </button>
     </PageWrapper>
   );
 }
