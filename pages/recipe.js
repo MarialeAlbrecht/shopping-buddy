@@ -4,13 +4,13 @@ import styled from "styled-components";
 import useSWR from "swr";
 
 export default function RandomRecipe() {
-  const { data, error, isloading, mutate } = useSWR(
+  const { data, error, isLoading, mutate } = useSWR(
     "https://www.themealdb.com/api/json/v1/1/random.php"
   );
   if (error) {
     return <p>We couldn´t load the recipe...</p>;
   }
-  if (isloading) {
+  if (isLoading) {
     return <p>Loading ... </p>;
   }
 
@@ -31,41 +31,96 @@ export default function RandomRecipe() {
 
   return (
     <PageWrapper>
-      <h1>{recipe.strMeal}</h1>
-      <Image
-        src={recipe.strMealThumb}
-        alt={recipe.strMeal}
-        width={300}
-        height={300}
-        loading="eager"
-      />
-      <h2>Ingredients:</h2>
-      <ul>
-        {ingredients.map((item, index) => (
-          <li key={index}>{item}</li>
-        ))}
-      </ul>
-      <h2>Instructions</h2>
-      <p>{recipe.strInstructions}</p>
-      <button
-        type="button"
-        onClick={() => {
-          mutate();
-          window.scrollTo(0, 0);
-        }}
-      >
-        <h2>Get another recipe</h2>
-      </button>
+      <Main>
+        <h1>{recipe.strMeal}</h1>
+        <ProductImage
+          src={recipe.strMealThumb}
+          alt={recipe.strMeal}
+          width={350}
+          height={350}
+          loading="eager"
+        />
+        <TextSection>
+          <h3>Ingredients:</h3>
+          <List>
+            {ingredients.map((item, index) => (
+              <li key={index}>{item}</li>
+            ))}
+          </List>
+        </TextSection>
+        <TextSection>
+          <h3>Instructions</h3>
+          <Paragraph>{recipe.strInstructions}</Paragraph>
+        </TextSection>
+        <RefreshButton
+          type="button"
+          onClick={() => {
+            mutate();
+            window.scrollTo(0, 0);
+          }}
+        >
+          <p>Get another recipe</p>
+        </RefreshButton>
+      </Main>
     </PageWrapper>
   );
 }
-const PageWrapper = styled.main`
+const PageWrapper = styled.section`
   display: flex;
-  flex-direction: column;
+  flex-direction: center;
+  align-items:center:
   padding-top: 120px;
   padding-bottom: 70px;
-  max-width: 100%;
+  max-width: 80%;
   margin: 0 auto;
   font-family: Helvetica, Arial, sans-serif;
   color: #1e1d6d;
+`;
+
+const RefreshButton = styled.button`
+  background-color: #04c6a3;
+  color: #1e1d6d;
+  border: none;
+  border-radius: 1rem;
+  padding: 0.5rem 1rem;
+  font-family: Helvetica, Arial, sans-serif;
+  font-weight: bold;
+  font-size: 14px;
+  width: auto;
+  white-space: nowrap;
+`;
+
+const Main = styled.main`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 100px;
+  padding-bottom: 70px;
+  max-width: 80%;
+  margin: 0 auto;
+  font-family: Helvetica, Arial, sans-serif;
+  color: #1e1d6d;
+`;
+
+const TextSection = styled.div`
+  width: 100%;
+  text-align: left;
+  margin-top: 1rem;
+`;
+
+const ProductImage = styled(Image)`
+  border-radius: 20px;
+  margin-top: 1rem;
+`;
+
+const List = styled.ul`
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+  line-height: 1.2;
+`;
+
+const Paragraph = styled.p`
+  text-align: justify;
+  line-height: 1.2;
 `;
