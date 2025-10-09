@@ -16,7 +16,7 @@ const recipesSchema = new Schema(
   { timestamps: true }
 );
 
-const Recipe =
-  mongoose.models.Recipe || mongoose.model("Recipes", recipesSchema);
+const Recipes =
+  mongoose.models.Recipes || mongoose.model("Recipes", recipesSchema);
 
 export default Recipes;
