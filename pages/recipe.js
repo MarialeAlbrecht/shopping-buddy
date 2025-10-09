@@ -4,13 +4,13 @@ import styled from "styled-components";
 import useSWR from "swr";
 
 export default function RandomRecipe() {
-  const { data, error, isloading, mutate } = useSWR(
+  const { data, error, isLoading, mutate } = useSWR(
     "https://www.themealdb.com/api/json/v1/1/random.php"
   );
   if (error) {
     return <p>We couldn´t load the recipe...</p>;
   }
-  if (isloading) {
+  if (isLoading) {
     return <p>Loading ... </p>;
   }
 
