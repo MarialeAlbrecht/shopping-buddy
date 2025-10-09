@@ -1,24 +1,20 @@
-import { useEffect, useState } from "react";
+import { mutate } from "swr";
 import Image from "next/image";
 import styled from "styled-components";
+import useSWR from "swr";
 
 export default function RandomRecipe() {
-  const [recipe, setRecipe] = useState();
-
-  async function fetchRecipe() {
-    const response = await fetch(
-      "https://www.themealdb.com/api/json/v1/1/random.php"
-    );
-    if (!response.ok) {
-      throw new Error("An error ocurred");
-    }
-    const data = await response.json();
-    setRecipe(data.meals[0]);
+  const { data, error, isloading, mutate } = useSWR(
+    "https://www.themealdb.com/api/json/v1/1/random.php"
+  );
+  if (error) {
+    return <p>We couldn´t load the recipe...</p>;
+  }
+  if (isloading) {
+    return <p>Loading ... </p>;
   }
 
-  useEffect(() => {
-    fetchRecipe();
-  }, []);
+  const recipe = data?.meals?.[0];
 
   if (!recipe) {
     return <p>We couldn´t load the recipe...</p>;
@@ -41,6 +37,7 @@ export default function RandomRecipe() {
         alt={recipe.strMeal}
         width={300}
         height={300}
+        loading="eager"
       />
       <h2>Ingredients:</h2>
       <ul>
@@ -50,7 +47,13 @@ export default function RandomRecipe() {
       </ul>
       <h2>Instructions</h2>
       <p>{recipe.strInstructions}</p>
-      <button type="button" onClick={fetchRecipe}>
+      <button
+        type="button"
+        onClick={() => {
+          mutate();
+          window.scrollTo(0, 0);
+        }}
+      >
         <h2>Get another recipe</h2>
       </button>
     </PageWrapper>
