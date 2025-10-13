@@ -16,7 +16,9 @@ export default function RecipeCard({ name, image, _id }) {
     <Card>
       <CardImage src={image} alt={name} width={140} height={140} />
       <h2>{name}</h2>
-      <RecipeButton _id={_id} />
+      <StyledRecipeButton>
+        <RecipeButton _id={_id} />
+      </StyledRecipeButton>
     </Card>
   );
 }
@@ -52,4 +54,9 @@ const Card = styled.section`
 const CardImage = styled(Image)`
   flex-shrink: 0;
   border-radius: 1rem;
+`;
+const StyledRecipeButton = styled.div`
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
 `;

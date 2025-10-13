@@ -18,7 +18,7 @@ const StyledMoreButton = styled(Link)`
   font-size: small;
   display: inline-flex;
   align-items: center;
-  padding: 0.25rem 0.5rem;
+  padding: 0.7rem 1.5rem;
   gap: 0.5rem;
   font-family: Helvetica, Arial, sans-serif;
   color: white;
