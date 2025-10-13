@@ -3,15 +3,22 @@ import { useRouter } from "next/router";
 import exit from "@/assets/exit.png";
 import Link from "next/link";
 import styled from "styled-components";
+import Image from "next/image";
 
 export default function RecipeDetail() {
   const router = useRouter();
   const { id } = router.query;
-  const { data: recipe, error, isLoading } = useSWR(`/api/recipes/${id}`);
+  const {
+    data: recipe,
+    error,
+    isLoading,
+  } = useSWR(id ? `/api/recipes/${id}` : null);
 
   if (error) return <p>Error loading recipe</p>;
   if (!id || isLoading) return <p>Loading recipe...</p>;
   if (!recipe) return <p>Recipe not found</p>;
+
+  const ingredients = recipe.ingredients;
 
   return (
     <PageWrapper>
@@ -20,17 +27,17 @@ export default function RecipeDetail() {
       </Link>
 
       <Main>
-        <h1>{recipe.strMeal}</h1>
+        <h1>{recipe.name}</h1>
         <ProductImage
-          src={recipe.strMealThumb}
-          alt={recipe.strMeal}
+          src={recipe.image}
+          alt={recipe.name}
           width={350}
           height={350}
           loading="eager"
         />
         <TextSection>
           <h3>Ingredients:</h3>
-          <List key={index}>
+          <List>
             {ingredients.map((item, index) => (
               <li key={index}>
                 {item.measure} {item.ingredient}
@@ -40,7 +47,7 @@ export default function RecipeDetail() {
         </TextSection>
         <TextSection>
           <h3>Instructions</h3>
-          <Paragraph>{recipe.strInstructions}</Paragraph>
+          <Paragraph>{recipe.instructions}</Paragraph>
         </TextSection>
       </Main>
     </PageWrapper>

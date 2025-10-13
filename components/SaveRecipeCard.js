@@ -4,12 +4,12 @@ import Image from "next/image";
 import RecipeButton from "./RecipeDetailButton";
 
 export default function RecipeCard({ name, image, _id }) {
-  const { data: categories, isLoading, error } = useSWR("/api/recipes");
+  const { data, isLoading, error } = useSWR("/api/recipes");
   if (isLoading) {
     return <p>Loading....</p>;
   }
   if (error) {
-    return <p>Error loading the categories...</p>;
+    return <p>Error loading the recipes...</p>;
   }
 
   return (
