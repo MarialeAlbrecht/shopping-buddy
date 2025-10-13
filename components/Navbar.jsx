@@ -21,7 +21,7 @@ export default function Navbar() {
         </Link>
       </NavItem>
       <NavItem>
-        <Link href="/recipe">
+        <Link href="/savedrecipes">
           <Image src={vegetables} alt="Recipes page" width={58} height={58} />
         </Link>
       </NavItem>
