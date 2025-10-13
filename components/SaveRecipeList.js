@@ -10,7 +10,7 @@ export default function RecipeList() {
   }
 
   if (!data) {
-    return <p>Oops..we could not find any products</p>;
+    return <p>Oops..we could not find any recipe</p>;
   }
 
   return (
@@ -23,7 +23,8 @@ export default function RecipeList() {
           {data.map((recipe) => (
             <SaveRecipeCard
               key={recipe._id}
-              _id={recipe._idMeal}
+              _id={recipe._id}
+              idMeal={recipe.idMeal}
               name={recipe.name}
               image={recipe.image}
             />

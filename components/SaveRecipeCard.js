@@ -1,20 +1,24 @@
 import useSWR from "swr";
 import styled from "styled-components";
 import Image from "next/image";
+import RecipeButton from "./RecipeDetailButton";
 
-export default function RecipeCard({ name, image }) {
-  const { data: categories, isLoading, error } = useSWR("/api/recipes");
+export default function RecipeCard({ name, image, _id }) {
+  const { data, isLoading, error } = useSWR("/api/recipes");
   if (isLoading) {
     return <p>Loading....</p>;
   }
   if (error) {
-    return <p>Error loading the categories...</p>;
+    return <p>Error loading the recipes...</p>;
   }
 
   return (
     <Card>
       <CardImage src={image} alt={name} width={140} height={140} />
       <h2>{name}</h2>
+      <StyledRecipeButton>
+        <RecipeButton _id={_id} />
+      </StyledRecipeButton>
     </Card>
   );
 }
@@ -50,4 +54,9 @@ const Card = styled.section`
 const CardImage = styled(Image)`
   flex-shrink: 0;
   border-radius: 1rem;
+`;
+const StyledRecipeButton = styled.div`
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
 `;
