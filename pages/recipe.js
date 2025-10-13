@@ -52,7 +52,7 @@ export default function RandomRecipe() {
           <h3>Instructions</h3>
           <Paragraph>{recipe.strInstructions}</Paragraph>
         </TextSection>
-        <RefreshButton
+        <StyleButton
           type="button"
           onClick={() => {
             mutate();
@@ -60,7 +60,10 @@ export default function RandomRecipe() {
           }}
         >
           <p>Get another recipe</p>
-        </RefreshButton>
+        </StyleButton>
+        <StyleButton type="button" onClick={() => {}}>
+          <p>Save recipe</p>
+        </StyleButton>
       </Main>
     </PageWrapper>
   );
@@ -77,7 +80,7 @@ const PageWrapper = styled.section`
   color: #1e1d6d;
 `;
 
-const RefreshButton = styled.button`
+const StyleButton = styled.button`
   background-color: #04c6a3;
   color: #1e1d6d;
   border: none;
@@ -88,6 +91,7 @@ const RefreshButton = styled.button`
   font-size: 14px;
   width: auto;
   white-space: nowrap;
+  margin-top: 0.5rem;
 `;
 
 const Main = styled.main`
