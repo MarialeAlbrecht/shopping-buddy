@@ -1,4 +1,6 @@
 import useSWR from "swr";
+import styled from "styled-components";
+import Image from "next/image";
 
 export default function RecipeCard({ name, image }) {
   const { data: categories, isLoading, error } = useSWR("/api/recipes");
@@ -10,9 +12,37 @@ export default function RecipeCard({ name, image }) {
   }
 
   return (
-    <>
-      {name}
-      {image}
-    </>
+    <Card>
+      <h2>{name}</h2>
+      <Image src={image} alt={name} width={60} height={60} />
+    </Card>
   );
 }
+const Card = styled.section`
+  position: relative;
+  background-color: white;
+  border: 2px solid #1e1d6d;
+  padding-top: 120px;
+  padding-bottom: 70px;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1rem;
+  border-radius: 1rem;
+  gap: 0.25rem;
+  display: flex;
+  flex-direction: column;
+  font-family: Helvetica, Arial, sans-serif;
+
+  color: #1e1d6d;
+  width: 100%;
+  min-width: 200px;
+  margin-bottom: 1.5rem;
+  h2 {
+    margin: 0;
+    line-height: 2;
+  }
+  p {
+    margin: 0;
+    line-height: 1.5;
+  }
+`;
