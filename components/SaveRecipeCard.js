@@ -1,8 +1,9 @@
 import useSWR from "swr";
 import styled from "styled-components";
 import Image from "next/image";
+import RecipeButton from "./RecipeDetailButton";
 
-export default function RecipeCard({ name, image }) {
+export default function RecipeCard({ name, image, _id }) {
   const { data: categories, isLoading, error } = useSWR("/api/recipes");
   if (isLoading) {
     return <p>Loading....</p>;
@@ -15,6 +16,7 @@ export default function RecipeCard({ name, image }) {
     <Card>
       <CardImage src={image} alt={name} width={140} height={140} />
       <h2>{name}</h2>
+      <RecipeButton _id={_id} />
     </Card>
   );
 }
