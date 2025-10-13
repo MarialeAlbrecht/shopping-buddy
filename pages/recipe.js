@@ -115,8 +115,7 @@ const StyleButton = styled.button`
   padding: 0.5rem 1rem;
   font-family: Helvetica, Arial, sans-serif;
   font-weight: bold;
-  font-size: 14px;
-  width: auto;
+  font-size: 16px;
   white-space: nowrap;
   margin-top: 0.5rem;
 `;

@@ -13,8 +13,8 @@ export default function RecipeCard({ name, image }) {
 
   return (
     <Card>
+      <CardImage src={image} alt={name} width={140} height={140} />
       <h2>{name}</h2>
-      <Image src={image} alt={name} width={60} height={60} />
     </Card>
   );
 }
@@ -28,9 +28,9 @@ const Card = styled.section`
   margin: 0 auto;
   padding: 1rem;
   border-radius: 1rem;
-  gap: 0.25rem;
+  gap: 1.15rem;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   font-family: Helvetica, Arial, sans-serif;
 
   color: #1e1d6d;
@@ -45,4 +45,9 @@ const Card = styled.section`
     margin: 0;
     line-height: 1.5;
   }
+`;
+
+const CardImage = styled(Image)`
+  flex-shrink: 0;
+  border-radius: 1rem;
 `;
