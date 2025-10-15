@@ -36,9 +36,9 @@ export default function RecipeCard({ name, image, _id }) {
       <StyledRecipeButton>
         <RecipeButton _id={_id} />
         <DeleteRecipeButton onClick={handleDelete}>
-          <Icon src={trash} alt="Remove button" width={24} height={24} />{" "}
-          <strong>Remove</strong>
-        </DeleteRecipeButton>{" "}
+          <Icon src={trash} alt="Remove button" width={24} height={24} />
+          <strong> Remove </strong>
+        </DeleteRecipeButton>
       </StyledRecipeButton>
     </Card>
   );
@@ -63,13 +63,18 @@ const Card = styled.section`
   min-width: 200px;
   margin-bottom: 1.5rem;
   h2 {
-    margin: 0;
+    margin: 0 0 3rem 0;
     line-height: 2;
   }
   p {
     margin: 0;
     line-height: 1.5;
   }
+     @media (max-width: 600px) {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 `;
 
 const CardImage = styled(Image)`
