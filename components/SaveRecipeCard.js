@@ -24,7 +24,7 @@ export default function RecipeCard({ name, image, _id }) {
       method: "DELETE",
     });
     if (response.ok) {
-      mutate("/api/recipe");
+      mutate("/api/recipes");
     } else {
     }
   }
