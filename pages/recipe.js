@@ -6,8 +6,8 @@ import { useRouter } from "next/router";
 
 export default function RandomRecipe() {
   const router = useRouter();
-  const { data: IDMeals } = useSWR("/api/recipes");
-  const savedID = IDMeals?.map((recipe) => recipe.idMeal);
+  const { data: recipes } = useSWR("/api/recipes");
+  const storedMealIds = recipes?.map(({ idMeal }) => idMeal);
 
   const { data, error, isLoading, mutate } = useSWR(
     "https://www.themealdb.com/api/json/v1/1/random.php"
@@ -22,7 +22,7 @@ export default function RandomRecipe() {
 
   const recipe = data?.meals?.[0];
 
-  if (recipe && savedID.includes(recipe.idMeal)) {
+  if (recipe && storedMealIds.includes(recipe.idMeal)) {
     mutate();
     return <p>Getting a new recipe...</p>;
   }
