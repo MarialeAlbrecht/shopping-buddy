@@ -4,6 +4,7 @@ import Image from "next/image";
 import RecipeButton from "./RecipeDetailButton";
 import DeleteRecipeButton from "./DeleteRecipeButton";
 import trash from "@/assets/trash.png";
+import { mutate } from "swr";
 
 export default function RecipeCard({ name, image, _id }) {
   const { data, isLoading, error } = useSWR("/api/recipes");
@@ -23,7 +24,7 @@ export default function RecipeCard({ name, image, _id }) {
       method: "DELETE",
     });
     if (response.ok) {
-      mutate("/api/recipes");
+      mutate("/api/recipe");
     } else {
     }
   }

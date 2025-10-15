@@ -14,6 +14,11 @@ export default async function handler(request, response) {
     response.status(200).json(recipe);
     return;
   }
+  if (request.method === "DELETE") {
+    await Recipes.findByIdAndDelete(id);
+    response.status(200).json({ message: "Recipe deleted" });
+    return;
+  }
 
   response.status(405).json({ status: "Method not allowed" });
 }
