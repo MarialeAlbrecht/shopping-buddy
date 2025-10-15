@@ -13,6 +13,8 @@ const DeleteRecipeButton = styled.button`
   font-size: 0.8rem;
   text-decoration: none;
   cursor: pointer;
+  box-shadow: none;
+  height: 48px;
 `;
 
 export default DeleteRecipeButton;

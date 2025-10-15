@@ -8,11 +8,7 @@ import Image from "next/image";
 export default function RecipeDetail() {
   const router = useRouter();
   const { id } = router.query;
-  const {
-    data: recipe,
-    error,
-    isLoading,
-  } = useSWR(id ? `/api/recipes/${id}` : null);
+  const { data: recipe, error, isLoading } = useSWR(`/api/recipes/${id}`);
 
   if (error) return <p>Error loading recipe</p>;
   if (!id || isLoading) return <p>Loading recipe...</p>;

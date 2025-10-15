@@ -36,7 +36,8 @@ export default function RecipeCard({ name, image, _id }) {
       <StyledRecipeButton>
         <RecipeButton _id={_id} />
         <DeleteRecipeButton onClick={handleDelete}>
-          <Icon src={trash} alt="Remove button" width={24} height={24} />
+          <Icon src={trash} alt="Remove button" width={24} height={24} />{" "}
+          <strong>Remove</strong>
         </DeleteRecipeButton>{" "}
       </StyledRecipeButton>
     </Card>
