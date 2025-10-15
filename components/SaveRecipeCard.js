@@ -2,6 +2,8 @@ import useSWR from "swr";
 import styled from "styled-components";
 import Image from "next/image";
 import RecipeButton from "./RecipeDetailButton";
+import DeleteRecipeButton from "./DeleteRecipeButton";
+import trash from "@/assets/trash.png";
 
 export default function RecipeCard({ name, image, _id }) {
   const { data, isLoading, error } = useSWR("/api/recipes");
@@ -11,6 +13,20 @@ export default function RecipeCard({ name, image, _id }) {
   if (error) {
     return <p>Error loading the recipes...</p>;
   }
+  async function handleDelete() {
+    const confirmed = window.confirm(
+      `Are you sure you want to delete the recipe "${name}"?`
+    );
+    if (!confirmed) return;
+
+    const response = await fetch(`/api/recipes/${_id}`, {
+      method: "DELETE",
+    });
+    if (response.ok) {
+      mutate("/api/recipes");
+    } else {
+    }
+  }
 
   return (
     <Card>
@@ -18,6 +34,9 @@ export default function RecipeCard({ name, image, _id }) {
       <h2>{name}</h2>
       <StyledRecipeButton>
         <RecipeButton _id={_id} />
+        <DeleteRecipeButton onClick={handleDelete}>
+          <Icon src={trash} alt="Remove button" width={24} height={24} />
+        </DeleteRecipeButton>{" "}
       </StyledRecipeButton>
     </Card>
   );
@@ -59,4 +78,8 @@ const StyledRecipeButton = styled.div`
   position: absolute;
   bottom: 1rem;
   right: 1rem;
+`;
+const Icon = styled(Image)`
+  width: 24px;
+  height: 24px;
 `;
