@@ -5,7 +5,7 @@ const shoppingItemSchema = new Schema(
   {
     name: { type: String, required: true },
     imageUrl: { type: String },
-    quantity: { type: Number, required: true },
+    quantity: { type: String, required: true },
     category: { type: String, required: true },
     comment: { type: String },
   },
