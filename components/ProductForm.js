@@ -37,11 +37,10 @@ export default function ProductForm({
       />
       <StyledLabel htmlFor="quantity">Quantity:</StyledLabel>
       <input
-        type="number"
+        type="text"
         id="quantity"
         name="quantity"
         defaultValue={defaultData.quantity}
-        min={1}
         required
       />
       <StyledLabel htmlFor="category">Select a category:</StyledLabel>
