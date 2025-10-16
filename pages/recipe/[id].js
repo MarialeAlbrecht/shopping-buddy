@@ -4,17 +4,29 @@ import exit from "@/assets/exit.png";
 import Link from "next/link";
 import styled from "styled-components";
 import Image from "next/image";
+import AddToShoppingList from "@/components/AddToShoppingList";
 
 export default function RecipeDetail() {
   const router = useRouter();
   const { id } = router.query;
   const { data: recipe, error, isLoading } = useSWR(`/api/recipes/${id}`);
+  const { data: shoppinglist } = useSWR(`/api/shoppinglist`);
 
   if (error) return <p>Error loading recipe</p>;
   if (!id || isLoading) return <p>Loading recipe...</p>;
   if (!recipe) return <p>Recipe not found</p>;
 
   const ingredients = recipe.ingredients;
+
+  function mapInShoppingList(ingredientName) {
+    if (shoppinglist) {
+      return shoppinglist.some((product) =>
+        ingredientName.toLowerCase().includes(product.name.toLowerCase())
+      );
+    } else {
+      return false;
+    }
+  }
 
   return (
     <PageWrapper>
@@ -34,11 +46,22 @@ export default function RecipeDetail() {
         <TextSection>
           <h3>Ingredients:</h3>
           <List>
-            {ingredients.map((item, index) => (
-              <li key={index}>
-                {item.measure} {item.ingredient}
-              </li>
-            ))}
+            {ingredients.map((item, index) => {
+              const ingredientName = item.ingredient;
+              const quantity = item.measure;
+              const isInList = mapInShoppingList(ingredientName);
+              return (
+                <li key={index}>
+                  {quantity} {ingredientName}
+                  {!isInList && (
+                    <AddToShoppingList
+                      ingredientName={ingredientName}
+                      quantity={quantity}
+                    />
+                  )}
+                </li>
+              );
+            })}
           </List>
         </TextSection>
         <TextSection>
