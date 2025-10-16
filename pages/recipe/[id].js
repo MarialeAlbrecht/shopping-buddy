@@ -51,7 +51,7 @@ export default function RecipeDetail() {
               const quantity = item.measure;
               const isInList = mapInShoppingList(ingredientName);
               return (
-                <li key={index}>
+                <IngredientRow key={index}>
                   {quantity} {ingredientName}
                   {!isInList && (
                     <AddToShoppingList
@@ -59,7 +59,7 @@ export default function RecipeDetail() {
                       quantity={quantity}
                     />
                   )}
-                </li>
+                </IngredientRow>
               );
             })}
           </List>
@@ -77,7 +77,6 @@ const Icon = styled(Image)`
   position: absolute;
   top: -0 2rem;
   right: 9%;
-  z-index: 20;
   top: 16%;
 `;
 const PageWrapper = styled.section`
@@ -124,4 +123,12 @@ const List = styled.ul`
 const Paragraph = styled.p`
   text-align: justify;
   line-height: 1.2;
+`;
+
+const IngredientRow = styled.li`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 0;
+  list-style: none;
 `;

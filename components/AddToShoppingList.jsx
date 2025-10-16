@@ -1,5 +1,7 @@
 import { mutate } from "swr";
 import styled from "styled-components";
+import tobepurchased from "@/assets/tobepurchased.png";
+import Image from "next/image";
 
 export default function AddToShoppingList({ ingredientName, quantity }) {
   async function handleAdd() {
@@ -16,21 +18,26 @@ export default function AddToShoppingList({ ingredientName, quantity }) {
     });
 
     if (response.ok) {
-      mutate();
+      mutate("/api/shoppinglist");
     } else {
       console.error("Failed to add new ingredient");
     }
   }
-  return <Button onClick={handleAdd}>add</Button>;
+  return (
+    <Button onClick={handleAdd}>
+      <Icon src={tobepurchased} alt="Add to Shopping List" />
+    </Button>
+  );
 }
 
 const Button = styled.button`
-  background-color: #4caf50;
-  color: white;
-  border: none;
-  padding: 6px 10px;
-  border-radius: 8px;
-  font-size: 0.9rem;
-  cursor: pointer;
-  margin-left: 8px;
+  background-color: white;
+  border-radius: 6px;
+  font-size: small;
+  border: 2px solid #1e1d6d;
+  right: 100px;
+`;
+const Icon = styled(Image)`
+  width: 18px;
+  height: 18px;
 `;
