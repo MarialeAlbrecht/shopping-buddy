@@ -17,7 +17,8 @@ const StyledAddButton = styled(Link)`
   color: #1e1d6d;
   position: fixed;
   bottom: 15%;
-  left: 43%;
+  left: 50%;
+  transform: translateX(-50%);
   border-radius: 8px;
   padding: 0.7rem 1.5rem;
   font-family: Helvetica, Arial, sans-serif;

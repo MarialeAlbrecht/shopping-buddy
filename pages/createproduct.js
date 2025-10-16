@@ -49,7 +49,8 @@ const PageWrapper = styled.div`
 
 const Icon = styled(Image)`
   position: absolute;
-  top: -0, 2rem;
-  right: 33%;
-  bottom: 79.5%;
+  top: -0 2rem;
+  right: 9%;
+  z-index: 20;
+  top: 16%;
 `;
