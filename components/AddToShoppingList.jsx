@@ -2,30 +2,45 @@ import { mutate } from "swr";
 import styled from "styled-components";
 import tobepurchased from "@/assets/tobepurchased.png";
 import Image from "next/image";
+import { ClipLoader } from "react-spinners";
+import { useState } from "react";
 
 export default function AddToShoppingList({ ingredientName, quantity }) {
+  const [isAdding, setIsAdding] = useState(false);
+
   async function handleAdd() {
+    setIsAdding(true);
     const newIngredient = {
       name: ingredientName,
       quantity: quantity,
       category: "Other",
     };
+    try {
+      const response = await fetch("/api/shoppinglist", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(newIngredient),
+      });
 
-    const response = await fetch("/api/shoppinglist", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(newIngredient),
-    });
+      if (!response.ok) {
+        throw new Error("Failed to add new ingredient");
+      }
 
-    if (response.ok) {
       mutate("/api/shoppinglist");
-    } else {
-      console.error("Failed to add new ingredient");
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setIsAdding(false);
     }
   }
+
   return (
-    <Button onClick={handleAdd}>
-      <Icon src={tobepurchased} alt="Add to Shopping List" />
+    <Button onClick={handleAdd} disabled={isAdding}>
+      {isAdding ? (
+        <ClipLoader size={18} color="#1e1d6d" />
+      ) : (
+        <Icon src={tobepurchased} alt="Add to Shopping List" />
+      )}
     </Button>
   );
 }
