@@ -51,6 +51,5 @@ const Icon = styled(Image)`
   position: absolute;
   top: -0 2rem;
   right: 9%;
-  z-index: 20;
   top: 16%;
 `;
