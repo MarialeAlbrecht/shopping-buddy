@@ -71,13 +71,10 @@ export default function AddToShoppingList({ ingredientName, quantity }) {
         </Dropdown>
       ) : (
         <Button onClick={() => setShowSelect(true)} disabled={isAdding}>
-          {isAdding ? (
-            <ClipLoader size={18} color="#1e1d6d" />
-          ) : (
-            <Icon src={tobepurchased} alt="Add to Shopping List" />
-          )}
+          <Icon src={tobepurchased} alt="Add to Shopping List" />
         </Button>
       )}
+      {isAdding && <ClipLoader size={18} color="#1e1d6d" />}
     </Wrapper>
   );
 }
